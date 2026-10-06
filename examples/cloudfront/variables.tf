@@ -1,3 +1,9 @@
+variable "workload_region" {
+  description = "Region of the surrounding workload stack. The certificate remains pinned to us-east-1 for CloudFront."
+  type        = string
+  default     = "us-east-2"
+}
+
 variable "domain_name" {
   description = "Domain name the distribution serves, such as www.example.com."
   type        = string

@@ -3,6 +3,8 @@
 # message that names the fix.
 
 resource "aws_acm_certificate" "this" {
+  region = var.region
+
   # Requested certificates, public or private.
   domain_name               = local.mode == "imported" ? null : var.domain_name
   subject_alternative_names = local.mode == "imported" ? null : sort(tolist(var.subject_alternative_names))

@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Optional `region` pin on both the ACM certificate and validation resources.
+  CloudFront callers can now enforce `us-east-1` while their default provider
+  remains in the workload Region, without provider-alias plumbing.
+
 ## [1.0.0] - 2026-09-24
 
 Breaking release. One module call still provisions one certificate, now in one of three modes. [docs/UPGRADE-1.0.md](docs/UPGRADE-1.0.md) maps every 0.1.x input and output to its replacement and gives the one state operation a wildcard-plus-apex certificate needs; resource addresses are unchanged.

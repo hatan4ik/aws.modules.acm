@@ -50,6 +50,7 @@ No resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Domain name the distribution serves, such as www.example.com. | `string` | n/a | yes |
 | <a name="input_subject_alternative_names"></a> [subject\_alternative\_names](#input\_subject\_alternative\_names) | Further names the distribution serves, such as example.com or *.example.com. All must be served by the zone below. | `set(string)` | `[]` | no |
+| <a name="input_workload_region"></a> [workload\_region](#input\_workload\_region) | Region of the surrounding workload stack. The certificate remains pinned to us-east-1 for CloudFront. | `string` | `"us-east-2"` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | ID of that hosted zone. | `string` | n/a | yes |
 | <a name="input_zone_name"></a> [zone\_name](#input\_zone\_name) | Name of the Route 53 hosted zone that serves every name above, without a trailing dot. | `string` | n/a | yes |
 
