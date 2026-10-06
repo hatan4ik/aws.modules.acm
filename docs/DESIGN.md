@@ -159,8 +159,10 @@ the resolved `mode`.
 
 - Terraform `>= 1.7.0, < 2.0.0` (the consuming platform pins 1.7.5).
 - AWS provider `>= 6.35.0, < 7.0.0`.
-- The certificate is created in the provider's region. CloudFront requires
-  `us-east-1`; pass a provider alias (see `examples/cloudfront`).
+- The certificate follows the provider's Region when `region` is null. An
+  explicit `region` is applied to both `aws_acm_certificate` and
+  `aws_acm_certificate_validation`; CloudFront callers set `us-east-1` without
+  replacing the surrounding workload provider (see `examples/cloudfront`).
 
 ## Migration
 

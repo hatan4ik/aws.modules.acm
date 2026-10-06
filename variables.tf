@@ -43,6 +43,17 @@ variable "name" {
   default     = null
 }
 
+variable "region" {
+  description = "Region where ACM manages the certificate and its validation operation. Null preserves the provider's configured Region. Set us-east-1 for a CloudFront viewer certificate; the module applies the same explicit Region to both ACM resources, so a workload provider configured for another Region cannot create or validate the certificate in the wrong place. Route 53 validation records are global and are unaffected."
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.region == null ? true : can(regex("^[a-z]{2}-(gov-|iso-|isob-)?[a-z]+-[0-9]$", var.region))
+    error_message = "region, when set, must be an AWS Region code such as us-east-1, including GovCloud and ISO partition Regions such as us-gov-west-1 or us-iso-east-1."
+  }
+}
+
 # ---------------------------------------------------------------------------
 # Public certificate validation
 # ---------------------------------------------------------------------------

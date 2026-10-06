@@ -19,6 +19,7 @@ resource "aws_route53_record" "validation" {
 resource "aws_acm_certificate_validation" "this" {
   count = local.wait ? 1 : 0
 
+  region                  = var.region
   certificate_arn         = aws_acm_certificate.this.arn
   validation_record_fqdns = local.manage_records ? [for record in aws_route53_record.validation : record.fqdn] : null
 

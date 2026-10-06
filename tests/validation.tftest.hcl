@@ -121,6 +121,26 @@ run "rejects_malformed_early_renewal_duration" {
   expect_failures = [var.early_renewal_duration]
 }
 
+run "rejects_malformed_region" {
+  command = plan
+  variables {
+    region = "US East (N. Virginia)"
+  }
+  expect_failures = [var.region]
+}
+
+run "explicit_region_pins_certificate_and_validation" {
+  command = plan
+  variables {
+    region = "us-east-1"
+  }
+
+  assert {
+    condition     = aws_acm_certificate.this.region == "us-east-1" && aws_acm_certificate_validation.this[0].region == "us-east-1"
+    error_message = "An explicit region must pin both the certificate and its validation operation."
+  }
+}
+
 run "rejects_malformed_certificate_authority_arn" {
   command = plan
   variables {
